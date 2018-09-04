@@ -1,5 +1,6 @@
 package automation.irequest.sanity;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HomePage {
@@ -7,6 +8,7 @@ public class HomePage {
 	@Test
 	public void test(){
 		System.out.println("sanity.HomePage.test()");
+		Assert.assertFalse(true);
 	}
 	
 	

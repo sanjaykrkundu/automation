@@ -31,13 +31,14 @@
 
 	</dependencies>
 
+	<!-- TO EXECUTE RUN -->
+	<!-- "mvn clean compile assembly:single exec:java" -->
+
+
 	<build>
-		<resources>
-			<resource>
-				<directory>resources</directory>
-			</resource>
-		</resources>
+
 		<plugins>
+			<!-- to set compiler -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
@@ -46,8 +47,35 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+
+			<!-- to build jar with dependencies and resources -->
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>automation.Application</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+
+			<!-- to run after buliding jar -->
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<configuration>
+					<mainClass>automation.Application</mainClass>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+
 
 
 
