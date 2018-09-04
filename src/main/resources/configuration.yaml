@@ -1,0 +1,26 @@
+suite: SANITY
+env: QA
+
+threadCount: 1
+retryLimit: 2
+
+runOn: LOCAL
+hubUrl: 10.30.30.121:4444/grid/hub
+
+browser: FIREFOX
+broswerVersion: 45
+
+urls:
+ local: http://ziplblrsy71.zycus.net:85/irequest
+ dev: https://irequest-dev.zycus.net:7445/irequest
+ qa: https://irequest-dev.zycus.net:7445/irequest
+ preprod: https://irequest-dev.zycus.net:7445/irequest
+
+tmsUrls:
+ local: https://smtlogin.zycus.net/sso/login
+ dev: https://smtlogin.zycus.net/sso/login
+ qa: https://smtlogin.zycus.net/sso/login
+ preprod: https://preprodlogin.zycus.net/sso/login
+
+credFile: input/cred.json
+testFile: input/test.json
