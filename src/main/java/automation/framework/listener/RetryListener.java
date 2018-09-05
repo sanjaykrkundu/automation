@@ -1,19 +1,20 @@
 package automation.framework.listener;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
+import org.testng.IAnnotationTransformer;
 import org.testng.IRetryAnalyzer;
-import org.testng.ITestResult;
+import org.testng.annotations.ITestAnnotation;
 
-public class RetryListener implements IRetryAnalyzer {
-	int counter = 0;
-	int retryLimit = 2;
-
-	@Override
-	public boolean retry(ITestResult result) {
-		if (counter < retryLimit) {
-			counter++;
-			return true;
-		}
-		return false;
-	}
-
+public class RetryListener implements IAnnotationTransformer {
+    public RetryListener() {
+    }
+    @Override
+    public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
+        IRetryAnalyzer retry = annotation.getRetryAnalyzer();
+        if (retry == null)    {
+            annotation.setRetryAnalyzer(Retry.class);
+        }
+    }
 }
