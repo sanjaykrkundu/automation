@@ -2,12 +2,12 @@ suite: SANITY
 env: QA
 
 threadCount: 1
-retryLimit: 1
+retryLimit: 0
 
 runOn: LOCAL
 hubUrl: 10.30.30.121:4444/grid/hub
 
-browser: FIREFOX
+browser: CHROME
 broswerVersion: 45
 
 urls:
@@ -24,3 +24,7 @@ tmsUrls:
 
 credFile: input/cred.json
 testFile: input/test.json
+
+pageLoadTimeOut: 120
+scriptTimeOut: 120
+implicitTimeOut: 120

@@ -13,7 +13,7 @@ public class YamlReader {
 			fileName = fileName + ".yaml";
 
 		T obj = null;
-		try (InputStream in = YamlReader.class.getClassLoader().getResourceAsStream(fileName)) {
+		try (InputStream in = Resources.getResourceStream(fileName)) {
 			obj = yaml.loadAs(in, classname);
 		} catch (IOException e) {
 			e.printStackTrace();

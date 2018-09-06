@@ -1,23 +1,32 @@
 package automation.testcase;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import java.io.File;
+import java.lang.reflect.Method;
+import java.util.Date;
+
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
+
+import automation.framework.util.DriverSelector;
+import automation.framework.util.Resources;
 
 public class BaseTest {
 
-	public WebDriver driver;
-	
-	@BeforeMethod
-	public void doBeforeMethod() {
-		System.out.println("testClass1: before method");
-		driver = new FirefoxDriver();
+	@BeforeSuite
+	private void beforeSuite() {
+		System.setProperty("webdriver.gecko.driver",
+				Resources.getResourceFile("driver" + File.separator + "geckodriver.exe").getAbsolutePath());
+		System.setProperty("webdriver.chrome.driver",
+				Resources.getResourceFile("driver" + File.separator + "chromedriver.exe").getAbsolutePath());
 	}
-	
-	@AfterMethod
-	public void doAfterMethod() {
-		System.out.println("testClass1: after method");
-		driver.close();
+
+	@DataProvider(name = "data")
+	public Object[][] getDataFromDataprovider(Method method) {
+
+		System.out.println(method.getName() + new Date());
+
+		return new Object[][] { new Object[] { DriverSelector.getDriver(), Math.random() } };
+
 	}
+
 }

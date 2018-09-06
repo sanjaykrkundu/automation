@@ -26,4 +26,7 @@ public class Configuration {
 	private Map<String, String> tmsUrls;
 	private String credFile;
 	private String testFile;
+	private int pageLoadTimeOut;
+	private int scriptTimeOut;
+	private int implicitTimeOut;
 }
